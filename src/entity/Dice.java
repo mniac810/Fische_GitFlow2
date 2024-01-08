@@ -45,12 +45,12 @@ public class Dice extends Entity{
 
     public void getDiceImage(){
         try{
-            img[0] = ImageIO.read(getClass().getResourceAsStream("/Dices/bluedice.png"));
-            img[1] = ImageIO.read(getClass().getResourceAsStream("/Dices/pinkdice.png"));
-            img[2] = ImageIO.read(getClass().getResourceAsStream("/Dices/yellowdice.png"));
-            img[3] = ImageIO.read(getClass().getResourceAsStream("/Dices/orangedice.png"));
-            img[4] = ImageIO.read(getClass().getResourceAsStream("/Dices/reddice.png"));
-            img[5] = ImageIO.read(getClass().getResourceAsStream("/Dices/darkgreendice.png"));
+            img[0] = ImageIO.read(getClass().getResourceAsStream("/Dices/blue.png"));
+            img[1] = ImageIO.read(getClass().getResourceAsStream("/Dices/pink.png"));
+            img[2] = ImageIO.read(getClass().getResourceAsStream("/Dices/yellow.png"));
+            img[3] = ImageIO.read(getClass().getResourceAsStream("/Dices/orange.png"));
+            img[4] = ImageIO.read(getClass().getResourceAsStream("/Dices/red.png"));
+            img[5] = ImageIO.read(getClass().getResourceAsStream("/Dices/green.png"));
 
         } catch (IOException e){
             e.printStackTrace();
