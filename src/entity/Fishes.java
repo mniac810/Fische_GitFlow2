@@ -12,6 +12,7 @@ public class Fishes{
     EntityHandler entityH;
 
     int firstX;
+    int gap;
 
     int fishWidth,fishHeight;
     int speed;
@@ -32,13 +33,13 @@ public class Fishes{
 
     private void getFishImage(){
         try{
-            fish[0].img = ImageIO.read(getClass().getResourceAsStream("/fish/black.png"));
+            fish[0].img = ImageIO.read(getClass().getResourceAsStream("/fish/blue.png"));
 
-            fish[1].img = ImageIO.read(getClass().getResourceAsStream("/fish/blue.png"));
+            fish[1].img = ImageIO.read(getClass().getResourceAsStream("/fish/pink.png"));
 
             fish[2].img = ImageIO.read(getClass().getResourceAsStream("/fish/yellow.png"));
 
-            fish[3].img = ImageIO.read(getClass().getResourceAsStream("/fish/green.png"));
+            fish[3].img = ImageIO.read(getClass().getResourceAsStream("/fish/orange.png"));
 
         }catch (IOException e){
             e.printStackTrace();
@@ -46,25 +47,26 @@ public class Fishes{
     }
 
     private void getDefaultValue(){
-        fishWidth = 12 * gp.scale;
-        fishHeight = 8 * gp.scale;
+        gap = 12*gp.scale;
+        fishWidth = 8 * gp.scale;
+        fishHeight = 4 * gp.scale;
         speed = 4;
 
         fish[0] = new Fish();
         fish[0].x = firstX;
-        fish[0].y = 4 * gp.scale;
+        fish[0].y = 10 * gp.scale;
 
         fish[1] = new Fish();
         fish[1].x = firstX;
-        fish[1].y = fish[0].y +16* gp.scale;
+        fish[1].y = fish[0].y +gap;
 
         fish[2] = new Fish();
         fish[2].x = firstX;
-        fish[2].y = fish[1].y+16* gp.scale;
+        fish[2].y = fish[1].y+gap;
 
         fish[3] = new Fish();
         fish[3].x = firstX;
-        fish[3].y = fish[2].y+16* gp.scale;
+        fish[3].y = fish[2].y+gap;
     }
 
     public void update(){
