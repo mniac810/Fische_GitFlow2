@@ -74,7 +74,6 @@ public class Fishes{
             if(fish[run].x >= gp.tileWidth*13+12){
                 fish[run].finished = true;
             }
-            System.out.println(fish[run].finished);
         }
         if(fishCount>=fishTimer){
             entityH.done = true;
