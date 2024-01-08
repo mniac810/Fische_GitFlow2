@@ -19,7 +19,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public final int totalRow = 14;
     public final int WIDTH = 14 * tileWidth;
-    public final int HEIGHT = tileHeight;
+    public final int HEIGHT = tileHeight + 48*scale;
 
     int FPS = 60;
 

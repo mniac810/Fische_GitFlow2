@@ -38,7 +38,8 @@ public class Dice extends Entity{
 
     public void setDefaultValues(){
         x = gp.WIDTH/2-24*gp.scale;
-        y = gp.tileHeight/2-24* gp.scale;
+        //y = gp.tileHeight/2-24* gp.scale;
+        y = gp.tileHeight;
         speed = 4;
     }
 
