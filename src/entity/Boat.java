@@ -28,14 +28,14 @@ public class Boat extends Entity{
         this.entityH = entityH;
         getBoatImage();
         setDefaultValues();
-        //32*16
-        boatWidth = 32 * gp.scale;
-        boatHeight = 16 * gp.scale;
     }
 
     public void setDefaultValues(){
+        //32*16
+        boatWidth = 32 * gp.scale;
+        boatHeight = 16 * gp.scale;
         x = 0;
-        y = gp.tileHeight/2;
+        y = gp.tileHeight/2 - boatHeight/2;
         speed = 4;
     }
 
