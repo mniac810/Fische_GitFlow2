@@ -21,13 +21,21 @@ public class GamePanel extends JPanel implements Runnable {
     public final int WIDTH = 14 * tileWidth;
     public final int HEIGHT = tileHeight + 48*scale;
 
+    //FPS
     int FPS = 60;
 
+    // SYSTEM
     TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler();
-    Thread gameThread;
+    KeyHandler keyH = new KeyHandler(this);
+    public UI ui = new UI(this);
     EntityHandler entityH = new EntityHandler(this,keyH);
+    Thread gameThread;
 
+    // GAME STATE
+    public int gameState;
+    public final int titleState = 0;
+    public final int playState = 1;
+    public final int pauseState = 2;
     public GamePanel(){
         this.setPreferredSize(new Dimension(WIDTH,HEIGHT));//???
         this.setBackground(Color.black);
@@ -36,6 +44,9 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
+    public void setupGame() {
+        gameState = titleState;
+    }
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
@@ -70,7 +81,12 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update(){
-        entityH.update();
+        if (gameState == playState) {
+            entityH.update();
+        }
+        if (gameState == pauseState) {
+            // Nothing
+        }
     }
 
     public void paintComponent(Graphics g){
@@ -78,8 +94,18 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        tileM.draw(g2);
-        entityH.draw(g2);
+        // TITLE SCREEN
+        if (gameState == titleState) {
+            ui.draw(g2);
+        } else {
+            tileM.draw(g2);
+            entityH.draw(g2);
+
+            ui.draw(g2);
+        }
+
+
+
 
         g2.dispose();
     }
