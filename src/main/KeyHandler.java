@@ -32,9 +32,10 @@ public class KeyHandler implements KeyListener {
                     gp.ui.commandNum = 0;
                 }
             }
-            if (code == KeyEvent.VK_ENTER) {
+            if (code == KeyEvent.VK_SPACE) {
                 if (gp.ui.commandNum == 0) {
                     gp.gameState = gp.playState;
+                    gp.counter = 5;
                 }
                 if (gp.ui.commandNum == 1) {
                     // add later
@@ -45,7 +46,7 @@ public class KeyHandler implements KeyListener {
             }
         }
         // PLAY STATE
-        if(code == KeyEvent.VK_SPACE){
+        if(code == KeyEvent.VK_SPACE && gp.counter==0){
             spacePressed = true;
         }
         if(code == KeyEvent.VK_P){
@@ -61,7 +62,7 @@ public class KeyHandler implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int code =e.getKeyCode();
 
-        if(code == KeyEvent.VK_SPACE|| code == KeyEvent.VK_ENTER){
+        if(code == KeyEvent.VK_SPACE){
             spacePressed = false;
         }
     }

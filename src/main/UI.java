@@ -1,6 +1,9 @@
 package main;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class UI {
@@ -8,6 +11,8 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font arial_40, arial_80B;
+    BufferedImage menuImage;
+
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
@@ -19,9 +24,18 @@ public class UI {
 
     public UI(GamePanel gp) {
         this.gp = gp;
+        setDefaultValue();
+    }
 
-        arial_40 = new Font("Arial", Font.PLAIN, 40);
-        arial_80B = new Font("Arial", Font.BOLD, 80);
+    void setDefaultValue(){
+        try {
+            arial_40 = new Font("Arial", Font.PLAIN, 40);
+            arial_80B = new Font("Arial", Font.BOLD, 80);
+
+            menuImage = ImageIO.read(getClass().getResourceAsStream("/Menu/sea3.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void showMessage(String text) {
@@ -50,15 +64,13 @@ public class UI {
     }
 
     public void drawTitleScreen() {
+        g2.drawImage(menuImage,0,0,gp.WIDTH,gp.HEIGHT,null);
 
-        g2.setColor(new Color(0,128,255));
-        g2.fillRect(0,0,gp.WIDTH, gp.HEIGHT);
         // TITLE NAME;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,90F));
         String text = "Tempo, Kleine Fische";
         int x = getXforCenteredText(text);
         int y = gp.HEIGHT-400;
-
         // SHADOW COLOR
         g2.setColor(Color.black);
         g2.drawString(text,x+5,y+5);
@@ -67,28 +79,31 @@ public class UI {
         g2.drawString(text, x, y);
 
         // MENU
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,20F));
+        int gap = 40;
 
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,20F));
         text = "New Game";
         x = getXforCenteredText(text);
         y += gp.HEIGHT-300;
         g2.drawString(text, x, y);
         if (commandNum == 0) {
-            g2.drawString(">", x-gp.tileWidth, y);
+            g2.drawString(">", x-30, y);
         }
+
         text = "Load Game";
         x = getXforCenteredText(text);
-        y += gp.HEIGHT-290;
+        y += gap;
         g2.drawString(text, x, y);
         if (commandNum == 1) {
-            g2.drawString(">", x-gp.tileWidth, y);
+            g2.drawString(">", x-30, y);
         }
+
         text = "Quit";
         x = getXforCenteredText(text);
-        y += gp.HEIGHT;
+        y += gap;
         g2.drawString(text, x, y);
         if (commandNum == 2) {
-            g2.drawString(">", x-gp.tileWidth, y);
+            g2.drawString(">", x-30, y);
         }
     }
     public void drawPauseScreen() {

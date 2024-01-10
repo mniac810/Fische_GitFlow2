@@ -30,6 +30,8 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this);
     EntityHandler entityH = new EntityHandler(this,keyH);
     Thread gameThread;
+    // For when we need to pause the game conveniently
+    public int counter = 0;
 
     // GAME STATE
     public int gameState;
@@ -81,6 +83,9 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update(){
+        //Now it is only use for when switching titleState and playState
+        if(counter!=0){counter--;}
+
         if (gameState == playState) {
             entityH.update();
         }
