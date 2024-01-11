@@ -3,6 +3,7 @@ package main;
 import entity.Boat;
 import entity.EntityHandler;
 import tile.TileManager;
+import UI.ChoosePlayer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +29,8 @@ public class GamePanel extends JPanel implements Runnable {
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler(this);
     public UI ui = new UI(this);
+    Player player = new Player(this);
+    ChoosePlayer choosePlayer = new ChoosePlayer(this);
     EntityHandler entityH = new EntityHandler(this,keyH);
     Thread gameThread;
     // For when we need to pause the game conveniently
@@ -38,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int chooseState = 3;
     public GamePanel(){
         this.setPreferredSize(new Dimension(WIDTH,HEIGHT));//???
         this.setBackground(Color.black);
@@ -104,6 +108,7 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
         } else {
             tileM.draw(g2);
+            player.draw(g2);
             entityH.draw(g2);
 
             ui.draw(g2);
