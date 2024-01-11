@@ -56,6 +56,9 @@ public class KeyHandler implements KeyListener {
                 gp.gameState = gp.playState;
             }
         }
+        if (code == KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.optionsState;
+        }
     }
 
     @Override
@@ -64,6 +67,11 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_SPACE){
             spacePressed = false;
+        }
+    }
+    public void pauseState(int code) {
+        if (code == KeyEvent.VK_P) {
+            gp.gameState = gp.playState;
         }
     }
 }
