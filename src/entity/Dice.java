@@ -16,10 +16,10 @@ public class Dice extends Entity{
     int diceWidth ;
     int diceHeight ;
     //Time for  the Dice to exist
-    int diceExist = 90;
+    int diceExist = 150;
     int diceCount = 0;
     //Time to end Rolling for player to see
-    int endDiceRoll = 40;
+    int endDiceRoll = 100;
     public int result=5;
 
     BufferedImage[] img = new BufferedImage[6];
