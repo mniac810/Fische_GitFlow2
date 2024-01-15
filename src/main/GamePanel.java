@@ -16,12 +16,12 @@ public class GamePanel extends JPanel implements Runnable {
     final int originTileHeight = originTileWidth * 4;//64
     //final int originBigTileWidth = originNormalTileWidth *3;//48
 
-   public final int tileWidth = originTileWidth * scale;
-   public final int tileHeight = originTileHeight * scale;
+   public final int tileWidth = originTileWidth * scale; // 80
+   public final int tileHeight = originTileHeight * scale; // 320
 
     public final int totalRow = 14;
-    public final int WIDTH = 14 * tileWidth;
-    public final int HEIGHT = tileHeight + 48*scale;
+    public final int WIDTH = 14 * tileWidth; //1120
+    public final int HEIGHT = tileHeight + 48*scale; //560
     // FOR FULL SCREEN
     int screenWidth2 = WIDTH;
     int screenHeight2 = HEIGHT;
