@@ -126,7 +126,14 @@ public class GamePanel extends JPanel implements Runnable {
         // TITLE SCREEN
         if (gameState == titleState) {
             ui.draw(g2);
-        } else {
+        } else if(gameState == chooseState){
+            tileM.draw(g2);
+            player.draw(g2);
+            entityH.draw(g2);
+            choosePlayer.draw(g2);
+        }
+        else
+        {
             tileM.draw(g2);
             player.draw(g2);
             entityH.draw(g2);
