@@ -46,7 +46,7 @@ public class KeyHandler implements KeyListener {
             }
         }
         //CHOOSE PLAYER STATE
-        if(gp.gameState == gp.chooseState){
+        else if(gp.gameState == gp.chooseState){
             if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
                 gp.choosePlayer.playerChoice--;
                 if(gp.choosePlayer.playerChoice==0){
@@ -77,7 +77,12 @@ public class KeyHandler implements KeyListener {
                 gp.gameState = gp.optionsState;
             }
         }
-
+        // PAUSE STATE
+        else if (gp.gameState == gp.pauseState) {
+            if (code == KeyEvent.VK_P) {
+                gp.gameState = gp.playState;
+            }
+        }
 
     }
 
