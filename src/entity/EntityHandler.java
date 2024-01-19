@@ -29,8 +29,8 @@ public class EntityHandler extends Entity{
         // Action base on the result
         if(!diceTimer && !done){
             if(dice.result <4){
-                //If this fish is catched
-                if(fishes.getCatched(dice.result)){
+                //If this fish is caught
+                if(fishes.getCaught(dice.result)){
                     boat.run = true;
                 }
                 else {

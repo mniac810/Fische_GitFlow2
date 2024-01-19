@@ -33,7 +33,7 @@ public class ChoosePlayer {
         x = 48* gp.scale;
 
         try {
-            fisherman = ImageIO.read(getClass().getResourceAsStream("/Menu/fishtitle1.png"));
+            fisherman = ImageIO.read(getClass().getResourceAsStream("/Menu/fisherman.png"));
             fishes = ImageIO.read(getClass().getResourceAsStream("/Menu/fishtitle1.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);

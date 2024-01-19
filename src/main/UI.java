@@ -11,7 +11,7 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font arial_40, arial_80B;
-    BufferedImage menuImage, fishTitleImage;
+    BufferedImage menuImage;
 
     public boolean messageOn = false;
     public String message = "";
@@ -33,7 +33,6 @@ public class UI {
             arial_80B = new Font("Arial", Font.BOLD, 80);
 
             menuImage = ImageIO.read(getClass().getResourceAsStream("/Menu/sea3.png"));
-            fishTitleImage = ImageIO.read(getClass().getResourceAsStream("/Menu/fishtitle1.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -76,8 +75,7 @@ public class UI {
         g2.setColor(Color.black);
         g2.drawString(text,x+5,y+5);
 
-        // FISH IMAGE (Fix this pls) :(
-//        g2.drawImage(fishTitleImage, 1120/2, 560/2, gp.WIDTH, gp.HEIGHT, null);
+
         // MAIN COLOR
         g2.setColor(Color.white);
         g2.drawString(text, x, y);

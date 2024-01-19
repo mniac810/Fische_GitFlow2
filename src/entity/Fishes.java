@@ -98,7 +98,7 @@ public class Fishes{
             }
         }
     }
-    public boolean getCatched(int fishNum){
+    public boolean getCaught(int fishNum){
         return fish[fishNum].caught;
     }
     public boolean getFinished(int fishNum){
