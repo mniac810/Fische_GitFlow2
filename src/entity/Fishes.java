@@ -21,12 +21,15 @@ public class Fishes{
     int fishTimer = 20;
     public int run = -1;
 
+    public int fishRemaining = 4;
+    public int fishFinished = 0;
+
     public Fishes(GamePanel gp,EntityHandler entityH){
         this.gp = gp;
         this.entityH = entityH;
 
         fish = new Fish[4];
-        firstX = gp.tileWidth * 6 + 12;
+        firstX = gp.tileWidth * 11 + 12;
         getDefaultValue();
         getFishImage();
     }
@@ -75,12 +78,17 @@ public class Fishes{
             fishCount++;
             if(fish[run].x >= gp.tileWidth*13+12){
                 fish[run].finished = true;
+                fishFinished++;
             }
         }
         if(fishCount>=fishTimer){
             entityH.done = true;
             fishCount=0;
             run = -1;
+            if (fishFinished > 2){
+                gp.ui.gameFinished = true;
+                gp.ui.fishWin = true;
+            }
         }
     }
 
@@ -92,9 +100,15 @@ public class Fishes{
     }
 
     public void collision(int boatX){
+        int counter = 0;
         for(int i=0;i<4;i++){
-            if(boatX>fish[i].x){
+            if(boatX>fish[i].x && !fish[i].caught){
+                counter++;
                 fish[i].caught =true;
+                fishRemaining--;
+                gp.ui.showMessage("Fish number " + (4 - fishRemaining) + " is caught!");
+                if (counter > 1)
+                    gp.ui.showMessage("Another fish is caught also!");
             }
         }
     }
@@ -107,4 +121,5 @@ public class Fishes{
     public int getFishX(int fishNum){
         return fish[fishNum].x;
     }
+    public int getFishRemaining() {return fishRemaining;}
 }

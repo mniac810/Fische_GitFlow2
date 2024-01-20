@@ -10,7 +10,7 @@ public class EntityHandler extends Entity{
     KeyHandler keyH;
     Boat boat;
     Dice dice;
-    Fishes fishes;
+    public Fishes fishes;
     public boolean diceTimer = false, done = true;
 
     public EntityHandler(GamePanel gp, KeyHandler keyH){

@@ -57,6 +57,14 @@ public class Boat extends Entity{
             run=false;
             entityH.done =true;
             boatCount = 0;
+            if (entityH.fishes.fishRemaining < 2) {
+                gp.ui.gameFinished = true;
+                gp.ui.boatWin = true;
+            }
+            if (entityH.fishes.fishRemaining == 2 && entityH.fishes.fishFinished == 2){
+                gp.ui.gameFinished = true;
+                gp.ui.tie = true;
+            }
         }
     }
 
