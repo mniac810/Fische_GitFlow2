@@ -29,7 +29,7 @@ public class Fishes{
         this.entityH = entityH;
 
         fish = new Fish[4];
-        firstX = gp.tileWidth * 11 + 12;
+        firstX = gp.tileWidth * 6 + 12;
         getDefaultValue();
         getFishImage();
     }
@@ -112,7 +112,7 @@ public class Fishes{
             }
         }
     }
-    public boolean getCatched(int fishNum){
+    public boolean getCaught(int fishNum){
         return fish[fishNum].caught;
     }
     public boolean getFinished(int fishNum){

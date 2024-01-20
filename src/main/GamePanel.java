@@ -1,9 +1,8 @@
 package main;
 
-import entity.Boat;
+import UI.ChoosePlayer;
 import entity.EntityHandler;
 import tile.TileManager;
-import UI.ChoosePlayer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,6 +30,8 @@ public class GamePanel extends JPanel implements Runnable {
     int FPS = 60;
 
     // SYSTEM
+    Sound music = new Sound();
+    Sound se = new Sound();
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler(this);
     public UI ui = new UI(this);
@@ -62,6 +63,10 @@ public class GamePanel extends JPanel implements Runnable {
 
         tempScreen = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
         g2 = (Graphics2D)tempScreen.getGraphics();
+
+        playMusic(0);
+
+
 
 //        setFullScreen();
     }
@@ -146,5 +151,17 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics g = getGraphics();
         g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
         g.dispose();
+    }
+    public void playMusic(int i){
+        music.setFile(i);
+        music.play();
+        music.loop();
+    }
+    public void stopMusic(){
+        music.stop();
+    }
+    public void playSE(int i){
+        se.setFile(i);
+        se.play();
     }
 }

@@ -10,8 +10,10 @@ public class EntityHandler extends Entity{
     KeyHandler keyH;
     Boat boat;
     Dice dice;
-    public Fishes fishes;
-    public boolean diceTimer = false, done = true;
+
+    Fishes fishes;
+    public boolean diceTimer = false;
+    public boolean done = true;
 
     public EntityHandler(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -29,8 +31,8 @@ public class EntityHandler extends Entity{
         // Action base on the result
         if(!diceTimer && !done){
             if(dice.result <4){
-                //If this fish is catched
-                if(fishes.getCatched(dice.result)){
+                //If this fish is caught
+                if(fishes.getCaught(dice.result)){
                     boat.run = true;
                 }
                 else {
@@ -49,7 +51,6 @@ public class EntityHandler extends Entity{
 
                     fishes.run = dice.result;
                 }
-
             }
             else{
                 boat.run=true;
@@ -68,5 +69,9 @@ public class EntityHandler extends Entity{
         if (diceTimer) {
             dice.draw(g2);
         }
+    }
+
+    public Fishes getFishes() {
+        return fishes;
     }
 }

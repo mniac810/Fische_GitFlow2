@@ -14,6 +14,7 @@ public class UI {
     Font arial_40, arial_80B, arial_20;
     BufferedImage menuImage, fishTitleImage;
 
+
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
@@ -40,7 +41,6 @@ public class UI {
 
 
             menuImage = ImageIO.read(getClass().getResourceAsStream("/Menu/sea3.png"));
-            fishTitleImage = ImageIO.read(getClass().getResourceAsStream("/Menu/fishtitle1.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -70,7 +70,7 @@ public class UI {
             else {
                 g2.setFont(arial_20);
                 g2.setColor(Color.white);
-                g2.drawString("Fishes remaining = " + gp.entityH.fishes.getFishRemaining(), 150, 400);
+                g2.drawString("Fishes remaining = " + gp.entityH.getFishes().getFishRemaining(), 150, 400);
 
                 if (messageOn == true) {
                     g2.drawString(message, 750, 400);
@@ -122,8 +122,7 @@ public class UI {
         g2.setColor(Color.black);
         g2.drawString(text,x+5,y+5);
 
-        // FISH IMAGE (Fix this pls) :(
-//        g2.drawImage(fishTitleImage, 1120/2, 560/2, gp.WIDTH, gp.HEIGHT, null);
+
         // MAIN COLOR
         g2.setColor(Color.white);
         g2.drawString(text, x, y);

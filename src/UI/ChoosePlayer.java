@@ -33,7 +33,7 @@ public class ChoosePlayer {
         x = 48* gp.scale;
 
         try {
-            fisherman = ImageIO.read(getClass().getResourceAsStream("/Menu/fishtitle1.png"));
+            fisherman = ImageIO.read(getClass().getResourceAsStream("/Menu/fisherman.png"));
             fishes = ImageIO.read(getClass().getResourceAsStream("/Menu/fishtitle1.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -52,7 +52,7 @@ public class ChoosePlayer {
         g2.fillRoundRect(x,y,playerSide,playerSide,35,35);
         g2.fillRoundRect(x+gap,y,playerSide,playerSide,35,35);
 
-        g2.drawImage(fisherman,x,y,playerSide,playerSide,null);
+        g2.drawImage(fishes,x,y,playerSide,playerSide,null);
         g2.drawImage(fisherman,x+gap,y,playerSide,playerSide,null);
     }
 }
