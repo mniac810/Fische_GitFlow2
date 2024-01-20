@@ -11,7 +11,8 @@ public class EntityHandler extends Entity{
     Boat boat;
     Dice dice;
     Fishes fishes;
-    public boolean diceTimer = false, done = true;
+    public boolean diceTimer = false;
+    public boolean done = true;
 
     public EntityHandler(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -47,9 +48,9 @@ public class EntityHandler extends Entity{
                         dice.result = fishNum;
                     }
 
-                    fishes.run = dice.result;
+                    //fishes.run = dice.result;
+                    boat.run=true;
                 }
-
             }
             else{
                 boat.run=true;

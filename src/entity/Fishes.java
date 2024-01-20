@@ -93,7 +93,7 @@ public class Fishes{
 
     public void collision(int boatX){
         for(int i=0;i<4;i++){
-            if(boatX>fish[i].x){
+            if(boatX>fish[i].x&&!fish[i].caught){
                 fish[i].caught =true;
             }
         }
