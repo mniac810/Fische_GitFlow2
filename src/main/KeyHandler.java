@@ -1,5 +1,7 @@
 package main;
 
+import entity.EntityHandler;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -48,15 +50,15 @@ public class KeyHandler implements KeyListener {
         //CHOOSE PLAYER STATE
         else if(gp.gameState == gp.chooseState){
             if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
-                gp.choosePlayer.playerChoice--;
-                if(gp.choosePlayer.playerChoice==0){
-                    gp.choosePlayer.playerChoice = 2;
+                gp.ui.choosePlayer.playerChoice--;
+                if(gp.ui.choosePlayer.playerChoice==0){
+                    gp.ui.choosePlayer.playerChoice = 2;
                 }
             }
             if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
-                gp.choosePlayer.playerChoice++;
-                if(gp.choosePlayer.playerChoice==3){
-                    gp.choosePlayer.playerChoice = 1;
+                gp.ui.choosePlayer.playerChoice++;
+                if(gp.ui.choosePlayer.playerChoice==3){
+                    gp.ui.choosePlayer.playerChoice = 1;
                 }
             }
             //SELECT THE PLAYER

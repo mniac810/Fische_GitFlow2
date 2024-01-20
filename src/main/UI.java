@@ -6,10 +6,12 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import UI.ChoosePlayer;
 
 public class UI {
 
     GamePanel gp;
+    public ChoosePlayer choosePlayer;
     Graphics2D g2;
     Font arial_40, arial_80B, arial_20;
     BufferedImage menuImage, fishTitleImage;
@@ -30,6 +32,7 @@ public class UI {
 
     public UI(GamePanel gp) {
         this.gp = gp;
+        choosePlayer = new ChoosePlayer(gp);
         setDefaultValue();
     }
 
@@ -60,6 +63,10 @@ public class UI {
         //TITLE STATE
         if (gp.gameState == gp.titleState) {
             drawTitleScreen();
+        }
+        // CHOOSE PLAYER STATE
+        if( gp.gameState == gp.chooseState){
+            choosePlayer.draw(g2);
         }
         // PLAY STATE
         if (gp.gameState == gp.playState) {
@@ -94,9 +101,19 @@ public class UI {
             String text = "Game end!";
 
             if (boatWin)
-                text = "The Boatmen caught enough Fishes!!!";
+                if(choosePlayer.playerChoice == choosePlayer.fishermanChoice){
+                    text = "YOU WIN!!!";
+                }
+                else{
+                    text = "YOU LOSE!!!";
+                }
             else if (fishWin) {
-                text = "The Fishes escaped to the sea!!!";
+                if(choosePlayer.playerChoice == choosePlayer.fishChoice){
+                    text = "YOU WIN!!!";
+                }
+                else{
+                    text = "YOU LOSE!!!";
+                }
             }
             else if (tie){
                 text = "The game is tie ._.";

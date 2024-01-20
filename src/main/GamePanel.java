@@ -36,11 +36,11 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler(this);
     public UI ui = new UI(this);
     Player player = new Player(this);
-    ChoosePlayer choosePlayer = new ChoosePlayer(this);
     EntityHandler entityH = new EntityHandler(this,keyH);
     Thread gameThread;
     // For when we need to pause the game conveniently
     public int counter = 0;
+    public int fishRemaining = 4;
 
     // GAME STATE
     public int gameState;
@@ -132,11 +132,6 @@ public class GamePanel extends JPanel implements Runnable {
         // TITLE SCREEN
         if (gameState == titleState) {
             ui.draw(g2);
-        } else if(gameState == chooseState){
-            tileM.draw(g2);
-            player.draw(g2);
-            entityH.draw(g2);
-            choosePlayer.draw(g2);
         }
         else
         {
@@ -154,6 +149,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
     public void playMusic(int i){
         music.setFile(i);
+        music.setVolume(80);
         music.play();
         music.loop();
     }

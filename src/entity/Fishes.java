@@ -21,8 +21,10 @@ public class Fishes{
     int fishTimer = 20;
     public int run = -1;
 
-    public int fishRemaining = 4;
-    public int fishFinished = 0;
+    int fishRemaining = 4;
+    int fishFinished = 0;
+    //Determined when to play SE
+    boolean playSE = false;
 
     public Fishes(GamePanel gp,EntityHandler entityH){
         this.gp = gp;
@@ -72,13 +74,15 @@ public class Fishes{
         fish[3].y = fish[2].y+gap;
     }
 
-    public void update(){
+    public boolean update(){
+        boolean finishedChanges = false;
         if(run != -1){
             fish[run].x += speed;
             fishCount++;
             if(fish[run].x >= gp.tileWidth*13+12){
                 fish[run].finished = true;
                 fishFinished++;
+                finishedChanges = true;
             }
         }
         if(fishCount>=fishTimer){
@@ -89,7 +93,11 @@ public class Fishes{
                 gp.ui.gameFinished = true;
                 gp.ui.fishWin = true;
             }
+            else if(playSE){
+                gp.playSE(2);
+            }
         }
+        return finishedChanges;
     }
 
     public void draw(Graphics2D g2){
@@ -99,7 +107,7 @@ public class Fishes{
 
     }
 
-    public void collision(int boatX){
+    public boolean collision(int boatX){
         int counter = 0;
         for(int i=0;i<4;i++){
             if(boatX>fish[i].x && !fish[i].caught){
@@ -111,6 +119,8 @@ public class Fishes{
                     gp.ui.showMessage("Another fish is caught also!");
             }
         }
+        //This is to check whether we should play SE
+        return counter > 0;
     }
     public boolean getCaught(int fishNum){
         return fish[fishNum].caught;
@@ -122,4 +132,8 @@ public class Fishes{
         return fish[fishNum].x;
     }
     public int getFishRemaining() {return fishRemaining;}
+    public int getFishFinished(){return fishFinished;}
+    public void playFishSE(){
+        playSE = false;
+    }
 }

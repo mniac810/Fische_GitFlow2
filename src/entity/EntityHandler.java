@@ -56,7 +56,10 @@ public class EntityHandler extends Entity{
                 boat.run=true;
             }
         }
-        fishes.update();
+        if(fishes.update()){
+            System.out.println("play SE");
+            fishes.playFishSE();
+        }
         boat.update();
     }
 
@@ -64,7 +67,10 @@ public class EntityHandler extends Entity{
         fishes.draw(g2);
         boat.draw(g2);
         //Check if Boat catch any
-        fishes.collision(boat.x+boat.boatWidth);
+        if(fishes.collision(boat.x+boat.boatWidth)){
+            //Play SE
+            boat.playBoatSE();
+        }
 
         if (diceTimer) {
             dice.draw(g2);
