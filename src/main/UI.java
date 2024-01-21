@@ -14,7 +14,7 @@ public class UI {
     public ChoosePlayer choosePlayer;
     Graphics2D g2;
     Font arial_40, arial_80B, arial_20;
-    BufferedImage menuImage, fishTitleImage;
+    BufferedImage menuImage;
 
 
     public boolean messageOn = false;
@@ -91,12 +91,15 @@ public class UI {
                 }
             }
         }
+
         // PAUSE STATE
         if (gp.gameState == gp.pauseState) {
             drawPauseScreen();
         }
+
+        // END GAME STATE
         if (gp.gameState == gp.endState){
-            g2.setFont(arial_20);
+            g2.setFont(arial_80B);
             g2.setColor(Color.white);
             String text = "Game end!";
 
@@ -173,6 +176,18 @@ public class UI {
         }
     }
 
+
+    public void drawPauseScreen() {
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,60F));
+        String text = "PAUSED";
+        int x = getXforCenteredText(text);
+
+        int y = gp.HEIGHT/2;
+
+        g2.drawString(text, x, y);
+    }
+
     public void drawEndScreen() {
         RescaleOp rop = new RescaleOp(1.1f, 20.0f, null);
         g2.setColor(new Color(0, 0, 0, 0.5f)); // 50% darker (change to 0.25f for 25% darker)
@@ -205,16 +220,6 @@ public class UI {
         if (commandNum == 2) {
             g2.drawString(">", x-30, y);
         }
-    }
-    public void drawPauseScreen() {
-
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,60F));
-        String text = "PAUSED";
-        int x = getXforCenteredText(text);
-
-        int y = gp.HEIGHT/2;
-
-        g2.drawString(text, x, y);
     }
 
     public int getXforCenteredText(String text) {
