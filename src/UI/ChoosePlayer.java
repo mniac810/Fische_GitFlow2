@@ -52,7 +52,7 @@ public class ChoosePlayer {
         g2.fillRoundRect(x,y,playerSide,playerSide,35,35);
         g2.fillRoundRect(x+gap,y,playerSide,playerSide,35,35);
 
-        g2.drawImage(fisherman,x,y,playerSide,playerSide,null);
+        g2.drawImage(fishes,x,y,playerSide,playerSide,null);
         g2.drawImage(fisherman,x+gap,y,playerSide,playerSide,null);
     }
 }

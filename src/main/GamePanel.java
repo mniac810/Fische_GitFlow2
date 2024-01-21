@@ -1,9 +1,8 @@
 package main;
 
-import entity.Boat;
+import UI.ChoosePlayer;
 import entity.EntityHandler;
 import tile.TileManager;
-import UI.ChoosePlayer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,15 +30,17 @@ public class GamePanel extends JPanel implements Runnable {
     int FPS = 60;
 
     // SYSTEM
+    Sound music = new Sound();
+    Sound se = new Sound();
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler(this);
     public UI ui = new UI(this);
     Player player = new Player(this);
-    ChoosePlayer choosePlayer = new ChoosePlayer(this);
     EntityHandler entityH = new EntityHandler(this,keyH);
     Thread gameThread;
     // For when we need to pause the game conveniently
     public int counter = 0;
+    public int fishRemaining = 4;
 
     // GAME STATE
     public int gameState;
@@ -48,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int pauseState = 2;
     public final int chooseState = 3;
     public final int optionsState = 4;
+    public final int endState = 5;
     public GamePanel(){
         this.setPreferredSize(new Dimension(WIDTH,HEIGHT));//???
         this.setBackground(Color.black);
@@ -61,6 +63,10 @@ public class GamePanel extends JPanel implements Runnable {
 
         tempScreen = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
         g2 = (Graphics2D)tempScreen.getGraphics();
+
+        playMusic(0);
+
+
 
 //        setFullScreen();
     }
@@ -126,11 +132,6 @@ public class GamePanel extends JPanel implements Runnable {
         // TITLE SCREEN
         if (gameState == titleState) {
             ui.draw(g2);
-        } else if(gameState == chooseState){
-            tileM.draw(g2);
-            player.draw(g2);
-            entityH.draw(g2);
-            choosePlayer.draw(g2);
         }
         else
         {
@@ -145,5 +146,18 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics g = getGraphics();
         g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
         g.dispose();
+    }
+    public void playMusic(int i){
+        music.setFile(i);
+        music.setVolume(80);
+        music.play();
+        music.loop();
+    }
+    public void stopMusic(){
+        music.stop();
+    }
+    public void playSE(int i){
+        se.setFile(i);
+        se.play();
     }
 }

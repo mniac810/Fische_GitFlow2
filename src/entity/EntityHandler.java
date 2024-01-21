@@ -10,8 +10,10 @@ public class EntityHandler extends Entity{
     KeyHandler keyH;
     Boat boat;
     Dice dice;
+
     Fishes fishes;
-    public boolean diceTimer = false, done = true;
+    public boolean diceTimer = false;
+    public boolean done = true;
 
     public EntityHandler(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -49,13 +51,15 @@ public class EntityHandler extends Entity{
 
                     fishes.run = dice.result;
                 }
-
             }
             else{
                 boat.run=true;
             }
         }
-        fishes.update();
+        if(fishes.update()){
+            System.out.println("play SE");
+            fishes.playFishSE();
+        }
         boat.update();
     }
 
@@ -63,10 +67,17 @@ public class EntityHandler extends Entity{
         fishes.draw(g2);
         boat.draw(g2);
         //Check if Boat catch any
-        fishes.collision(boat.x+boat.boatWidth);
+        if(fishes.collision(boat.x+boat.boatWidth)){
+            //Play SE
+            boat.playBoatSE();
+        }
 
         if (diceTimer) {
             dice.draw(g2);
         }
+    }
+
+    public Fishes getFishes() {
+        return fishes;
     }
 }

@@ -16,6 +16,7 @@ public class Boat extends Entity{
     int y;
     int boatWidth ;
     int boatHeight ;
+    boolean playeSE = false;
     public boolean run =false;
     //Set Boat Timer
     int boatCount = 0;
@@ -57,7 +58,24 @@ public class Boat extends Entity{
             run=false;
             entityH.done =true;
             boatCount = 0;
+            //Boat win
+            if (entityH.fishes.fishRemaining < 2) {
+                gp.ui.gameFinished = true;
+                gp.ui.boatWin = true;
+            }//Game Tie
+            else if (entityH.fishes.getFishRemaining() == 2 && entityH.fishes.getFishFinished() == 2){
+                gp.ui.gameFinished = true;
+                gp.ui.tie = true;
+            }//Boat catches some fishes
+            else if(playeSE){
+                gp.playSE(1);
+                playeSE=false;
+            }
         }
+    }
+
+    public void playBoatSE(){
+        playeSE = true;
     }
 
     public void draw(Graphics2D g2){
