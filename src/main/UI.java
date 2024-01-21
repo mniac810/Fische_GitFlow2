@@ -77,10 +77,10 @@ public class UI {
             else {
                 g2.setFont(arial_20);
                 g2.setColor(Color.white);
-                g2.drawString("Fishes remaining = " + gp.entityH.getFishes().getFishRemaining(), 150, 400);
+                g2.drawString("Fishes remaining = " + gp.entityH.getFishes().getFishRemaining(), 30, 335);
 
                 if (messageOn == true) {
-                    g2.drawString(message, 750, 400);
+                    g2.drawString(message, 800, 335);
 
                     messageCounter++;
 

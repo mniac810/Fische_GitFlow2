@@ -19,7 +19,7 @@ public class Player {
         x = 0;
         y = gp.tileHeight;
         try {
-            img = ImageIO.read(getClass().getResourceAsStream("/Menu/playerMenu.png"));
+            img = ImageIO.read(getClass().getResourceAsStream("/Menu/maptit2.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
