@@ -41,6 +41,10 @@ public class ChoosePlayer {
     }
 
     public void draw(Graphics2D g2){
+        Color c = new Color(0,0,0,150);
+        g2.setColor(c);
+        g2.fillRect(0,0,gp.WIDTH,gp.HEIGHT);
+
         g2.setColor(Color.black);
         if (playerChoice == fishChoice) {
             g2.fillRoundRect(x-shadowGap,y-shadowGap,playerSide+2*shadowGap,playerSide+2*shadowGap,35,35);
