@@ -31,8 +31,8 @@ public class GamePanel extends JPanel implements Runnable {
     int FPS = 60;
 
     // SYSTEM
-    Sound music = new Sound();
-    Sound se = new Sound();
+    public Sound music = new Sound();
+    public Sound se = new Sound();
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler(this);
     public UI ui = new UI(this);
@@ -41,7 +41,8 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     // For when we need to pause the game conveniently
     public int counter = 0;
-    public int fishRemaining = 4;
+    public Font plainFont = new Font("TimesRoman",Font.PLAIN,32);
+    public Font boldFont = new Font("TimesRoman",Font.BOLD,32);
 
     // GAME STATE
     public int gameState;
@@ -49,8 +50,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int playState = 1;
     public final int pauseState = 2;
     public final int chooseState = 3;
-    public final int optionsState = 4;
-    public final int endState = 5;
+    public final int endState = 4;
+    public boolean optionStateOn = false;
     public GamePanel(){
         this.setPreferredSize(new Dimension(WIDTH,HEIGHT));//???
         this.setBackground(Color.black);
@@ -150,7 +151,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
     public void playMusic(int i){
         music.setFile(i);
-        music.setVolume(80);
         music.play();
         music.loop();
     }
