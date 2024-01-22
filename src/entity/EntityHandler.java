@@ -26,6 +26,7 @@ public class EntityHandler extends Entity{
         // Activate the dice
         if(keyH.spacePressed && done){
             diceTimer=true;
+            gp.playSE(6);
             done = false;
         }
         // Action base on the result

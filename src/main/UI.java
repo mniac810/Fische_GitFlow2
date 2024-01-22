@@ -333,6 +333,7 @@ public class UI {
                 gp.gameState = previousState;
                 gp.optionStateOn = false;
                 gp.keyH.spacePressed = false;
+                gp.playSE(5);
             }
         }
         g2.drawString("Back",textX,textY);
