@@ -102,10 +102,12 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_SPACE) {
                 if (gp.ui.commandNum == 0) {
                     gp.gameState = gp.chooseState;
+                    gp.newGame();
                     gp.counter = 3;
                 }
                 if (gp.ui.commandNum == 1) {
                     gp.gameState = gp.titleState;
+                    gp.newGame();
                 }
                 if (gp.ui.commandNum == 2) {
                     System.exit(0);

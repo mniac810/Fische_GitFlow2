@@ -2,6 +2,7 @@ package main;
 
 import UI.ChoosePlayer;
 import entity.EntityHandler;
+import entity.Fishes;
 import tile.TileManager;
 
 import javax.swing.*;
@@ -159,5 +160,10 @@ public class GamePanel extends JPanel implements Runnable {
     public void playSE(int i){
         se.setFile(i);
         se.play();
+    }
+    public void newGame(){
+        entityH.getBoat().setDefaultValues();
+        entityH.getFishes().setDefaultValue();
+        ui.restoreDefaultValue();
     }
 }

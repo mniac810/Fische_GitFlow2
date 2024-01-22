@@ -6,6 +6,9 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import UI.ChoosePlayer;
 
 public class UI {
@@ -17,9 +20,9 @@ public class UI {
     BufferedImage menuImage;
 
 
-    public boolean messageOn = false;
-    public String message = "";
-    int messageCounter = 0;
+    public boolean[] messageOn = {false, false, false, false};
+    ArrayList<String> messages = new ArrayList<>();
+    int[] messageCounter = {0, 0, 0, 0};
     public boolean gameFinished = false;
     public int commandNum = 0;
 
@@ -36,6 +39,18 @@ public class UI {
         setDefaultValue();
     }
 
+    //For restarting the game
+    public void restoreDefaultValue(){
+        gameFinished = false;
+
+        fishWin = false;
+        boatWin = false;
+        tie = false;
+
+        Arrays.fill(messageCounter, 0);
+        Arrays.fill(messageOn, false);
+    }
+
     void setDefaultValue(){
         try {
             arial_40 = new Font("Arial", Font.PLAIN, 40);
@@ -50,8 +65,8 @@ public class UI {
     }
 
     public void showMessage(String text) {
-        message = text;
-        messageOn = true;
+        messages.add(text);
+        messageOn[messages.size() - 1] = true;
     }
 
     public void draw(Graphics2D g2) {
@@ -78,15 +93,19 @@ public class UI {
                 g2.setFont(arial_20);
                 g2.setColor(Color.white);
                 g2.drawString("Fishes remaining = " + gp.entityH.getFishes().getFishRemaining(), 30, 335);
+                for(int messageIndex = 0; messageIndex < 4; messageIndex++) {
+                    if (messageOn[messageIndex] && messages.size()>messageIndex) {
+                        g2.drawString(messages.get(messageIndex), 800, 335 + messageIndex * 30);
 
-                if (messageOn == true) {
-                    g2.drawString(message, 800, 335);
+                        messageCounter[messageIndex]++;
 
-                    messageCounter++;
-
-                    if (messageCounter > 120) {
-                        messageCounter = 0;
-                        messageOn = false;
+                        if (messageCounter[messageIndex] > 130) {
+                            messageCounter[messageIndex] = 0;
+                            messageOn[messageIndex] = false;
+                            if (allMessageOnIsFalse()){
+                                messages.removeAll(messages);
+                            }
+                        }
                     }
                 }
             }
@@ -189,7 +208,6 @@ public class UI {
     }
 
     public void drawEndScreen() {
-        RescaleOp rop = new RescaleOp(1.1f, 20.0f, null);
         g2.setColor(new Color(0, 0, 0, 0.5f)); // 50% darker (change to 0.25f for 25% darker)
         g2.fillRect(0, 0, gp.WIDTH, gp.HEIGHT);
 
@@ -224,9 +242,10 @@ public class UI {
 
     public int getXforCenteredText(String text) {
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = gp.WIDTH/2 - length/2;
-        return x;
+        return gp.WIDTH/2 - length/2;
     }
 
-
+    private boolean allMessageOnIsFalse(){
+        return messageOn[0]==messageOn[1]==messageOn[2]==messageOn[3]==false;
+    }
 }

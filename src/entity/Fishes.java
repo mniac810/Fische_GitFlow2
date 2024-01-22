@@ -57,21 +57,16 @@ public class Fishes{
         fishHeight = 4 * gp.scale;
         speed = 4;
 
-        fish[0] = new Fish();
-        fish[0].x = firstX;
-        fish[0].y = 10 * gp.scale;
-
-        fish[1] = new Fish();
-        fish[1].x = firstX;
-        fish[1].y = fish[0].y +gap;
-
-        fish[2] = new Fish();
-        fish[2].x = firstX;
-        fish[2].y = fish[1].y+gap;
-
-        fish[3] = new Fish();
-        fish[3].x = firstX;
-        fish[3].y = fish[2].y+gap;
+        for(int i = 0; i < 4; i++){
+            fish[i] = new Fish();
+            if (i == 0){
+                fish[i].y = 10 * gp.scale;
+            }
+            else{
+                fish[i].y = fish[i - 1].y + gap;
+            }
+            fish[i].x = firstX;
+        }
     }
 
     public boolean update(){
@@ -95,6 +90,7 @@ public class Fishes{
             }
             else if(playSE){
                 gp.playSE(2);
+                playSE = false;
             }
         }
         return finishedChanges;
@@ -108,19 +104,17 @@ public class Fishes{
     }
 
     public boolean collision(int boatX){
-        int counter = 0;
+        int fishCaughtCounter = 0;
         for(int i=0;i<4;i++){
             if(boatX>fish[i].x && !fish[i].caught){
-                counter++;
+                fishCaughtCounter++;
                 fish[i].caught =true;
                 fishRemaining--;
                 gp.ui.showMessage("Fish number " + (4 - fishRemaining) + " is caught!");
-                if (counter > 1)
-                    gp.ui.showMessage("Another fish is caught also!");
             }
         }
         //This is to check whether we should play SE
-        return counter > 0;
+        return fishCaughtCounter > 0;
     }
     public boolean getCaught(int fishNum){
         return fish[fishNum].caught;
@@ -134,6 +128,14 @@ public class Fishes{
     public int getFishRemaining() {return fishRemaining;}
     public int getFishFinished(){return fishFinished;}
     public void playFishSE(){
-        playSE = false;
+        playSE = true;
+    }
+
+    //For restarting the game
+    public void setDefaultValue(){
+        getDefaultValue();
+        getFishImage();
+        fishFinished = 0;
+        fishRemaining = 4;
     }
 }

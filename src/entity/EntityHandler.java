@@ -80,4 +80,5 @@ public class EntityHandler extends Entity{
     public Fishes getFishes() {
         return fishes;
     }
+    public Boat getBoat() {return boat;}
 }
