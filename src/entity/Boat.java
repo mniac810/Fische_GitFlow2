@@ -53,8 +53,10 @@ public class Boat extends Entity{
         if(run){
             x += speed;
             boatCount ++;
+            gp.playSE(7);
         }
         if(boatCount>=boatTimer){
+
             run=false;
             entityH.done =true;
             boatCount = 0;

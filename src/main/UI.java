@@ -128,20 +128,28 @@ public class UI {
             if (boatWin)
                 if(choosePlayer.playerChoice == choosePlayer.fishermanChoice){
                     text = "YOU WIN!!!";
+                    gp.playSE(3);
                 }
                 else{
                     text = "YOU LOSE!!!";
+                    gp.playSE(4);
+
                 }
             else if (fishWin) {
                 if(choosePlayer.playerChoice == choosePlayer.fishChoice){
                     text = "YOU WIN!!!";
+                    gp.playSE(3);
+
                 }
                 else{
                     text = "YOU LOSE!!!";
+                    gp.playSE(4);
+
                 }
             }
             else if (tie){
                 text = "The game is tie ._.";
+                gp.playSE(3);
             }
 
             int x, y;

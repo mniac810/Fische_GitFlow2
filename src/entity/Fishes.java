@@ -72,6 +72,7 @@ public class Fishes{
     public boolean update(){
         boolean finishedChanges = false;
         if(run != -1){
+            playFishSE();
             fish[run].x += speed;
             fishCount++;
             if(fish[run].x >= gp.tileWidth*13+12){
