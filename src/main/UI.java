@@ -3,9 +3,7 @@ package main;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
 import java.io.IOException;
-import java.net.CookieHandler;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -88,30 +86,7 @@ public class UI {
         }
         // PLAY STATE
         if (gp.gameState == gp.playState) {
-            if (gameFinished == true){
-
-                gp.gameState = gp.endState;
-            }
-            else {
-                g2.setFont(arial_20);
-                g2.setColor(Color.white);
-                g2.drawString("Fishes remaining = " + gp.entityH.getFishes().getFishRemaining(), 30, 335);
-                for(int messageIndex = 0; messageIndex < 4; messageIndex++) {
-                    if (messageOn[messageIndex] && messages.size()>messageIndex) {
-                        g2.drawString(messages.get(messageIndex), 800, 335 + messageIndex * 30);
-
-                        messageCounter[messageIndex]++;
-
-                        if (messageCounter[messageIndex] > 130) {
-                            messageCounter[messageIndex] = 0;
-                            messageOn[messageIndex] = false;
-                            if (allMessageOnIsFalse()){
-                                messages.removeAll(messages);
-                            }
-                        }
-                    }
-                }
-            }
+            drawGameState();
         }
 
         // PAUSE STATE
@@ -121,41 +96,7 @@ public class UI {
 
         // END GAME STATE
         if (gp.gameState == gp.endState){
-            g2.setFont(arial_80B);
-            g2.setColor(Color.white);
-            String text = "Game end!";
-
-            if (boatWin)
-                if(choosePlayer.playerChoice == choosePlayer.fishermanChoice){
-                    text = "YOU WIN!!!";
-                    gp.playSE(3);
-                }
-                else{
-                    text = "YOU LOSE!!!";
-                    gp.playSE(4);
-
-                }
-            else if (fishWin) {
-                if(choosePlayer.playerChoice == choosePlayer.fishChoice){
-                    text = "YOU WIN!!!";
-                    gp.playSE(3);
-
-                }
-                else{
-                    text = "YOU LOSE!!!";
-                    gp.playSE(4);
-
-                }
-            }
-            else if (tie){
-                text = "The game is tie ._.";
-                gp.playSE(3);
-            }
-
-            int x, y;
-            x = getXforCenteredText(text);
-            y = gp.HEIGHT / 2 - (gp.tileHeight * 2);
-            g2.drawString(text, x, 200);
+            setEndScreen();
             drawEndScreen();
         }
         if(gp.optionStateOn){
@@ -220,12 +161,50 @@ public class UI {
         g2.drawString(text, x, y);
     }
 
+    public void setEndScreen(){
+        g2.setFont(arial_80B);
+        g2.setColor(Color.white);
+        String text = "Game end!";
+
+        if (boatWin)
+            if(choosePlayer.playerChoice == choosePlayer.fishermanChoice){
+                text = "YOU WIN!!!";
+                gp.playSE(3);
+            }
+            else{
+                text = "YOU LOSE!!!";
+                gp.playSE(4);
+
+            }
+        else if (fishWin) {
+            if(choosePlayer.playerChoice == choosePlayer.fishChoice){
+                text = "YOU WIN!!!";
+                gp.playSE(3);
+
+            }
+            else{
+                text = "YOU LOSE!!!";
+                gp.playSE(4);
+
+            }
+        }
+        else if (tie){
+            text = "The game is tie ._.";
+            gp.playSE(3);
+        }
+
+        int x;
+        x = getXforCenteredText(text);
+        g2.drawString(text, x, 200);
+    }
+
     public void drawEndScreen() {
         g2.setColor(new Color(0, 0, 0, 0.5f)); // 50% darker (change to 0.25f for 25% darker)
         g2.fillRect(0, 0, gp.WIDTH, gp.HEIGHT);
 
         // MENU
         int gap = 40;
+        g2.setColor(Color.white);
 
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,20F));
         String text = "New Game";
@@ -266,6 +245,33 @@ public class UI {
         options(frameX,frameY);
 
         gp.keyH.enterPressed = false;
+    }
+
+    public void drawGameState(){
+        if (gameFinished == true){
+
+            gp.gameState = gp.endState;
+        }
+        else {
+            g2.setFont(arial_20);
+            g2.setColor(Color.white);
+            g2.drawString("Fishes remaining = " + gp.entityH.getFishes().getFishRemaining(), 30, 335);
+            for(int messageIndex = 0; messageIndex < 4; messageIndex++) {
+                if (messageOn[messageIndex] && messages.size()>messageIndex) {
+                    g2.drawString(messages.get(messageIndex), 800, 335 + messageIndex * 30);
+
+                    messageCounter[messageIndex]++;
+
+                    if (messageCounter[messageIndex] > 130) {
+                        messageCounter[messageIndex] = 0;
+                        messageOn[messageIndex] = false;
+                        if (allMessageOnIsFalse()){
+                            messages.removeAll(messages);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void options(int frameX,int frameY){
