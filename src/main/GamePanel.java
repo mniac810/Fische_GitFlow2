@@ -1,8 +1,6 @@
 package main;
 
-import UI.ChoosePlayer;
 import entity.EntityHandler;
-import entity.Fishes;
 import tile.TileManager;
 
 import javax.swing.*;
