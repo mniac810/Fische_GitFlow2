@@ -41,7 +41,7 @@ public class EntityHandler extends Entity{
                         int min = gp.tileWidth*15;
                         int fishNum = -1;
                         for(int i=0;i<4;i++){
-                            if(min>fishes.getFishX(i)){
+                            if(min>fishes.getFishX(i) && !fishes.getCaught(i)){
                                 min = fishes.getFishX(i);
                                 fishNum = i;
                             }

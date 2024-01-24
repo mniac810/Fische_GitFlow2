@@ -64,6 +64,12 @@ public class Boat extends Entity{
             if (entityH.fishes.fishRemaining < 2) {
                 gp.ui.gameFinished = true;
                 gp.ui.boatWin = true;
+                if(gp.ui.playerChoice == gp.ui.fishermanChoice){
+                    gp.playSE(3);
+                }
+                else{
+                    gp.playSE(4);
+                }
             }//Game Tie
             else if (entityH.fishes.getFishRemaining() == 2 && entityH.fishes.getFishFinished() == 2){
                 gp.ui.gameFinished = true;
