@@ -74,6 +74,7 @@ public class Boat extends Entity{
             else if (entityH.fishes.getFishRemaining() == 2 && entityH.fishes.getFishFinished() == 2){
                 gp.ui.gameFinished = true;
                 gp.ui.tie = true;
+                gp.playSE(8);
             }//Boat catches some fishes
             else if(playSE){
                 gp.playSE(1);
