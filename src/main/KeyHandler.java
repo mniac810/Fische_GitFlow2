@@ -80,16 +80,16 @@ public class KeyHandler implements KeyListener {
     }
     void choosePLayerState(int code){
         if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
-            gp.ui.choosePlayer.playerChoice--;
-            if(gp.ui.choosePlayer.playerChoice==0){
-                gp.ui.choosePlayer.playerChoice = 2;
+            gp.ui.playerChoice--;
+            if(gp.ui.playerChoice==0){
+                gp.ui.playerChoice = 2;
             }
             gp.playSE(5);
         }
         if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
-            gp.ui.choosePlayer.playerChoice++;
-            if(gp.ui.choosePlayer.playerChoice==3){
-                gp.ui.choosePlayer.playerChoice = 1;
+            gp.ui.playerChoice++;
+            if(gp.ui.playerChoice==3){
+                gp.ui.playerChoice = 1;
             }
             gp.playSE(5);
         }

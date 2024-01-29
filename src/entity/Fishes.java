@@ -88,6 +88,12 @@ public class Fishes{
             if (fishFinished > 2){
                 gp.ui.gameFinished = true;
                 gp.ui.fishWin = true;
+                if(gp.ui.playerChoice == gp.ui.fishChoice){
+                    gp.playSE(3);
+                }
+                else {
+                    gp.playSE(4);
+                }
             }
             else if(playSE){
                 gp.playSE(2);

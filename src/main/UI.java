@@ -8,12 +8,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import UI.ChoosePlayer;
-
 public class UI {
 
     GamePanel gp;
-    public ChoosePlayer choosePlayer;
     Graphics2D g2;
     Font arial_40, arial_80B, arial_20;
     BufferedImage menuImage;
@@ -33,10 +30,13 @@ public class UI {
 
     double playTime;
     DecimalFormat dFormat = new DecimalFormat("#0.00");
+    public int playerChoice = 1;
+    public int fishChoice = 1;
+    public int fishermanChoice = 2;
+    BufferedImage fisherman, fishes;
 
     public UI(GamePanel gp) {
         this.gp = gp;
-        choosePlayer = new ChoosePlayer(gp);
         setDefaultValue();
     }
 
@@ -63,6 +63,14 @@ public class UI {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        try {
+            fisherman = ImageIO.read(getClass().getResourceAsStream("/Menu/fisherman.png"));
+            fishes = ImageIO.read(getClass().getResourceAsStream("/Menu/fishtitle1.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public void showMessage(String text) {
@@ -82,7 +90,7 @@ public class UI {
         }
         // CHOOSE PLAYER STATE
         if( gp.gameState == gp.chooseState){
-            choosePlayer.draw(g2);
+            drawChoosePlayer();
         }
         // PLAY STATE
         if (gp.gameState == gp.playState) {
@@ -149,6 +157,34 @@ public class UI {
             g2.drawString(">", x-30, y);
         }
     }
+    public void drawChoosePlayer(){
+        //Choose Player
+        int shadowGap = 8;
+
+        int gap = gp.tileWidth*5;
+
+        int playerSide = 3*gp.tileWidth;
+        int y = gp.HEIGHT/2-playerSide/2;
+        int x = 48* gp.scale;
+
+        Color c = new Color(0,0,0,150);
+        g2.setColor(c);
+        g2.fillRect(0,0,gp.WIDTH,gp.HEIGHT);
+
+        g2.setColor(Color.black);
+        if (playerChoice == fishChoice) {
+            g2.fillRoundRect(x-shadowGap,y-shadowGap,playerSide+2*shadowGap,playerSide+2*shadowGap,35,35);
+        }
+        else{
+            g2.fillRoundRect(x+gap-shadowGap,y-shadowGap,playerSide+2*shadowGap,playerSide+2*shadowGap,35,35);
+        }
+        g2.setColor(Color.blue);
+        g2.fillRoundRect(x,y,playerSide,playerSide,35,35);
+        g2.fillRoundRect(x+gap,y,playerSide,playerSide,35,35);
+
+        g2.drawImage(fishes,x,y,playerSide,playerSide,null);
+        g2.drawImage(fisherman,x+gap,y,playerSide,playerSide,null);
+    }
 
     public void drawPauseScreen() {
 
@@ -169,30 +205,22 @@ public class UI {
         String text = "Game end!";
 
         if (boatWin)
-            if(choosePlayer.playerChoice == choosePlayer.fishermanChoice){
+            if(playerChoice == fishermanChoice){
                 text = "YOU WIN!!!";
-                gp.playSE(3);
             }
             else{
                 text = "YOU LOSE!!!";
-                gp.playSE(4);
-
             }
         else if (fishWin) {
-            if(choosePlayer.playerChoice == choosePlayer.fishChoice){
+            if(playerChoice == fishChoice){
                 text = "YOU WIN!!!";
-                gp.playSE(3);
-
             }
             else{
                 text = "YOU LOSE!!!";
-                gp.playSE(4);
-
             }
         }
         else if (tie){
             text = "The game is tie ._.";
-            gp.playSE(3);
         }
 
         int x;
