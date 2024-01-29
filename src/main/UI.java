@@ -135,27 +135,37 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,20F));
         text = "New Game";
         x = getXforCenteredText(text);
-        y += gp.HEIGHT-300;
-        g2.drawString(text, x, y);
+        y += gp.HEIGHT-375;
+
         if (commandNum == 0) {
+            g2.setColor(Color.YELLOW);
             g2.drawString(">", x-30, y);
+        } else {
+            g2.setColor(Color.white);
         }
+        g2.drawString(text, x, y);
 
         text = "Options";
         x = getXforCenteredText(text);
         y += gap;
-        g2.drawString(text, x, y);
         if (commandNum == 1) {
+            g2.setColor(Color.YELLOW);
             g2.drawString(">", x-30, y);
+        } else {
+            g2.setColor(Color.white);
         }
+        g2.drawString(text, x, y);
 
         text = "Quit";
         x = getXforCenteredText(text);
         y += gap;
-        g2.drawString(text, x, y);
         if (commandNum == 2) {
+            g2.setColor(Color.YELLOW);
             g2.drawString(">", x-30, y);
+        } else {
+            g2.setColor(Color.white);
         }
+        g2.drawString(text, x, y);
     }
     public void drawChoosePlayer(){
         //Choose Player
