@@ -31,7 +31,7 @@ public class Fishes{
         this.entityH = entityH;
 
         fish = new Fish[4];
-        firstX = gp.tileWidth * 6 + 12;
+        firstX = gp.tileWidth * 3 + 12;
         getDefaultValue();
         getFishImage();
     }

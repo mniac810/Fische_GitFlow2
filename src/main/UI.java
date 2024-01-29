@@ -162,6 +162,8 @@ public class UI {
     }
 
     public void setEndScreen(){
+        g2.setColor(new Color(0, 0, 0, 0.5f)); // 50% darker (change to 0.25f for 25% darker)
+        g2.fillRect(0, 0, gp.WIDTH, gp.HEIGHT);
         g2.setFont(arial_80B);
         g2.setColor(Color.white);
         String text = "Game end!";
@@ -199,8 +201,7 @@ public class UI {
     }
 
     public void drawEndScreen() {
-        g2.setColor(new Color(0, 0, 0, 0.5f)); // 50% darker (change to 0.25f for 25% darker)
-        g2.fillRect(0, 0, gp.WIDTH, gp.HEIGHT);
+
 
         // MENU
         int gap = 40;

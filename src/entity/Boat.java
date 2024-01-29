@@ -17,6 +17,7 @@ public class Boat extends Entity{
     int boatWidth ;
     int boatHeight ;
     boolean playSE = false;
+    boolean moveSE = false;
     public boolean run =false;
     //Set Boat Timer
     int boatCount = 0;
@@ -53,7 +54,7 @@ public class Boat extends Entity{
         if(run){
             x += speed;
             boatCount ++;
-            gp.playSE(7);
+            playBoatMoveSE();
         }
         if(boatCount>=boatTimer){
 
@@ -72,6 +73,9 @@ public class Boat extends Entity{
             else if(playSE){
                 gp.playSE(1);
                 playSE = false;
+            } else if (moveSE) {
+                gp.playSE(7);
+                moveSE = false;
             }
         }
     }
@@ -79,6 +83,7 @@ public class Boat extends Entity{
     public void playBoatSE(){
         playSE = true;
     }
+    public void playBoatMoveSE(){ moveSE = true;}
 
     public void draw(Graphics2D g2){
         g2.drawImage(img,x,y,boatWidth,boatHeight,null);
