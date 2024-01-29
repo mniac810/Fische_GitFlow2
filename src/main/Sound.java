@@ -21,7 +21,7 @@ public class Sound {
         soundURL[4] = getClass().getResource("/Sound/DisappointedSE.wav");
         soundURL[5] = getClass().getResource("/Sound/cursor.wav");
         soundURL[6] = getClass().getResource("/Sound/Dice.wav");
-        soundURL[7] = getClass().getResource("/Sound/BoatRowingSoundEffect.wav");
+        soundURL[7] = getClass().getResource("/Sound/steamWhistle.wav");
         soundURL[8] = getClass().getResource("/Sound/Ohno.wav");
     }
     public void setFile(int i){
