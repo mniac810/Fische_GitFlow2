@@ -75,7 +75,9 @@ public class UI {
 
     public void showMessage(String text) {
         messages.add(text);
-        messageOn[messages.size() - 1] = true;
+        int messagesSize = messages.size() - 1;
+        messagesSize = messagesSize >= 4 ? 4 : messagesSize;
+        messageOn[messagesSize] = true;
     }
 
     public void draw(Graphics2D g2) {
@@ -136,26 +138,34 @@ public class UI {
         text = "New Game";
         x = getXforCenteredText(text);
         y += gp.HEIGHT-300;
-        g2.drawString(text, x, y);
         if (commandNum == 0) {
             g2.drawString(">", x-30, y);
+            g2.setColor(Color.yellow);
         }
+        g2.drawString(text, x, y);
+        g2.setColor(Color.white);
 
         text = "Options";
         x = getXforCenteredText(text);
         y += gap;
-        g2.drawString(text, x, y);
         if (commandNum == 1) {
+            g2.setColor(Color.yellow);
             g2.drawString(">", x-30, y);
         }
+        g2.drawString(text, x, y);
+        g2.setColor(Color.white);
+
 
         text = "Quit";
         x = getXforCenteredText(text);
         y += gap;
         g2.drawString(text, x, y);
         if (commandNum == 2) {
+            g2.setColor(Color.yellow);
             g2.drawString(">", x-30, y);
         }
+        g2.drawString(text, x, y);
+        g2.setColor(Color.white);
     }
     public void drawChoosePlayer(){
         //Choose Player

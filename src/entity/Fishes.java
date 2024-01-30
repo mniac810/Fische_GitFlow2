@@ -21,6 +21,8 @@ public class Fishes{
     int fishTimer = 20;
     public int run = -1;
 
+    String fishColor[] = {"blue", "pink", "yellow", "orange"};
+
     int fishRemaining = 4;
     int fishFinished = 0;
     //Determined when to play SE
@@ -31,7 +33,7 @@ public class Fishes{
         this.entityH = entityH;
 
         fish = new Fish[4];
-        firstX = gp.tileWidth * 3 + 12;
+        firstX = gp.tileWidth * 6 + 12;
         getDefaultValue();
         getFishImage();
     }
@@ -76,6 +78,7 @@ public class Fishes{
             fish[run].x += speed;
             fishCount++;
             if(fish[run].x >= gp.tileWidth*13+12){
+                gp.ui.showMessage("The " + fishColor[run] + " fish has escaped!!!");
                 fish[run].finished = true;
                 fishFinished++;
                 finishedChanges = true;
@@ -117,7 +120,7 @@ public class Fishes{
                 fishCaughtCounter++;
                 fish[i].caught =true;
                 fishRemaining--;
-                gp.ui.showMessage("Fish number " + (4 - fishRemaining) + " is caught!");
+                gp.ui.showMessage("The " + fishColor[i] + " fish is caught!");
             }
         }
         //This is to check whether we should play SE
