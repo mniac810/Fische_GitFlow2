@@ -249,26 +249,36 @@ public class UI {
         String text = "New Game";
         int x = getXforCenteredText(text);
         int y = gp.HEIGHT-300;
-        g2.drawString(text, x, y);
         if (commandNum == 0) {
+            g2.setColor(Color.YELLOW);
             g2.drawString(">", x-30, y);
+        } else {
+            g2.setColor(Color.white);
         }
+        g2.drawString(text, x, y);
+
 
         text = "Back to Title";
         x = getXforCenteredText(text);
         y += gap;
-        g2.drawString(text, x, y);
         if (commandNum == 1) {
+            g2.setColor(Color.YELLOW);
             g2.drawString(">", x-30, y);
+        } else {
+            g2.setColor(Color.white);
         }
+        g2.drawString(text, x, y);
 
         text = "Quit";
         x = getXforCenteredText(text);
         y += gap;
-        g2.drawString(text, x, y);
         if (commandNum == 2) {
+            g2.setColor(Color.YELLOW);
             g2.drawString(">", x-30, y);
+        } else {
+            g2.setColor(Color.white);
         }
+        g2.drawString(text, x, y);
     }
 
     public void drawOptionScreen(){
