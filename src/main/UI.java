@@ -18,6 +18,7 @@ public class UI {
 
     public boolean[] messageOn = {false, false, false, false};
     ArrayList<String> messages = new ArrayList<>();
+
     int[] messageCounter = {0, 0, 0, 0};
     public boolean gameFinished = false;
     public int commandNum = 0;
@@ -76,7 +77,7 @@ public class UI {
     public void showMessage(String text) {
         messages.add(text);
         int messagesSize = messages.size() - 1;
-        messagesSize = messagesSize >= 4 ? 4 : messagesSize;
+        if (messagesSize > 3) messagesSize = 3;
         messageOn[messagesSize] = true;
     }
 
@@ -137,35 +138,36 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,20F));
         text = "New Game";
         x = getXforCenteredText(text);
-        y += gp.HEIGHT-300;
+        y += gp.HEIGHT-375;
+
         if (commandNum == 0) {
+            g2.setColor(Color.YELLOW);
             g2.drawString(">", x-30, y);
-            g2.setColor(Color.yellow);
+        } else {
+            g2.setColor(Color.white);
         }
         g2.drawString(text, x, y);
-        g2.setColor(Color.white);
 
         text = "Options";
         x = getXforCenteredText(text);
         y += gap;
         if (commandNum == 1) {
-            g2.setColor(Color.yellow);
+            g2.setColor(Color.YELLOW);
             g2.drawString(">", x-30, y);
+        } else {
+            g2.setColor(Color.white);
         }
         g2.drawString(text, x, y);
-        g2.setColor(Color.white);
-
-
         text = "Quit";
         x = getXforCenteredText(text);
         y += gap;
-        g2.drawString(text, x, y);
         if (commandNum == 2) {
-            g2.setColor(Color.yellow);
+            g2.setColor(Color.YELLOW);
             g2.drawString(">", x-30, y);
+        } else {
+            g2.setColor(Color.white);
         }
         g2.drawString(text, x, y);
-        g2.setColor(Color.white);
     }
     public void drawChoosePlayer(){
         //Choose Player
@@ -249,26 +251,36 @@ public class UI {
         String text = "New Game";
         int x = getXforCenteredText(text);
         int y = gp.HEIGHT-300;
-        g2.drawString(text, x, y);
         if (commandNum == 0) {
+            g2.setColor(Color.YELLOW);
             g2.drawString(">", x-30, y);
+        } else {
+            g2.setColor(Color.white);
         }
+        g2.drawString(text, x, y);
+
 
         text = "Back to Title";
         x = getXforCenteredText(text);
         y += gap;
-        g2.drawString(text, x, y);
         if (commandNum == 1) {
+            g2.setColor(Color.YELLOW);
             g2.drawString(">", x-30, y);
+        } else {
+            g2.setColor(Color.white);
         }
+        g2.drawString(text, x, y);
 
         text = "Quit";
         x = getXforCenteredText(text);
         y += gap;
-        g2.drawString(text, x, y);
         if (commandNum == 2) {
+            g2.setColor(Color.YELLOW);
             g2.drawString(">", x-30, y);
+        } else {
+            g2.setColor(Color.white);
         }
+        g2.drawString(text, x, y);
     }
 
     public void drawOptionScreen(){
@@ -304,8 +316,14 @@ public class UI {
                     if (messageCounter[messageIndex] > 130) {
                         messageCounter[messageIndex] = 0;
                         messageOn[messageIndex] = false;
+                        for(int i = 0; i < 4; i++){
+                            System.out.print(messageOn[i] +", ");
+                        }
+                        System.out.println();
                         if (allMessageOnIsFalse()){
+                            System.out.println("Size of messages before remove: " + messages.size());
                             messages.removeAll(messages);
+                            System.out.println("Size of messages after remove: " + messages.size());
                         }
                     }
                 }
@@ -425,6 +443,10 @@ public class UI {
     }
 
     private boolean allMessageOnIsFalse(){
-        return messageOn[0]==messageOn[1]==messageOn[2]==messageOn[3]==false;
+        for(int i = 0; i < 4; i++){
+            if (messageOn[i])
+                return false;
+        }
+        return true;
     }
 }
